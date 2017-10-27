@@ -12,6 +12,7 @@
     </ul>
     <div>
       <h3>黄金亮</h3>
+      <el-button>花花</el-button>
     </div>
     <ul>
       <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
@@ -33,7 +34,6 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang='scss' scoped>
 h1, h2 {
   font-weight: normal;
