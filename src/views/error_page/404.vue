@@ -1,5 +1,5 @@
-<style lang="less">
-    @import './404.less';
+<style lang="scss">
+    @import './404.scss';
 </style>
 
 <template>
