@@ -5,14 +5,14 @@
 
       <el-form-item prop="username">
         <span class="svg-container svg-container_login">
-          <icon-svg icon-class="user" />
+          <huang-svg icon-class="icon-zhanghao" :size='100' :color="'red'" />
         </span>
         <el-input name="username" type="text" v-model="loginForm.username" autoComplete="on" placeholder="邮箱" />
       </el-form-item>
 
       <el-form-item prop="password">
         <span class="svg-container">
-          <icon-svg icon-class="password" />
+          <huang-svg icon-class="icon-406biaoqing_mogui" />
         </span>
         <el-input name="password" :type="pwdType" @keyup.enter.native="handleLogin" v-model="loginForm.password" autoComplete="on"
           placeholder="密码" />
