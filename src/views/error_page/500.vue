@@ -13,7 +13,7 @@
                     <i class="el-icon-error"></i>
                 </span>
             </div>
-            <p class="error500-body-con-message">Oops! the server is wrong</p>
+            <p class="error500-body-con-message">服务器出错</p>
             <div class="error500-btn-con">
                 <el-button @click="goHome" size="large" style="width: 200px;" type="text">返回首页</el-button>
                 <el-button @click="backPage" size="large" style="width: 200px;margin-left: 40px;" type="primary">返回上一页</el-button>

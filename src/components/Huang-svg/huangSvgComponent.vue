@@ -18,7 +18,7 @@ export default {
     }
   },
   props: {
-    iconClass: {
+    name: {
       type: String,
       required: true
     },
@@ -32,7 +32,7 @@ export default {
   },
   computed: {
     iconName () {
-      return `#${this.iconClass}`
+      return `#${this.name}`
     }
   }
 }

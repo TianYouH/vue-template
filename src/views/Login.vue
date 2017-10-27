@@ -5,18 +5,18 @@
 
       <el-form-item prop="username">
         <span class="svg-container svg-container_login">
-          <huang-svg icon-class="icon-zhanghao" :size='100' :color="'red'" />
+          <huang-svg name="icon-zhanghao" :size='100' :color="'red'" />
         </span>
         <el-input name="username" type="text" v-model="loginForm.username" autoComplete="on" placeholder="邮箱" />
       </el-form-item>
 
       <el-form-item prop="password">
         <span class="svg-container">
-          <huang-svg icon-class="icon-406biaoqing_mogui" />
+          <huang-svg name="icon-406biaoqing_mogui" />
         </span>
         <el-input name="password" :type="pwdType" @keyup.enter.native="handleLogin" v-model="loginForm.password" autoComplete="on"
           placeholder="密码" />
-        <span class='show-pwd' @click='showPwd'><icon-svg icon-class="eye" /></span>
+        <span class='show-pwd' @click='showPwd'><huang-svg name="eye" /></span>
       </el-form-item>
 
       <el-button type="primary" style="width:100%;margin-bottom:30px;" :loading="loading" @click.native.prevent="handleLogin">登录</el-button>
