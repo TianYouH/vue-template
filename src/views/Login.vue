@@ -28,6 +28,9 @@
 </template>
 
 <script>
+
+import { requestLogin } from 'api/api'
+
 export default {
   name: 'login',
   data () {
@@ -57,6 +60,11 @@ export default {
       pwdType: 'password',
       loading: false
     }
+  },
+  mounted () {
+    console.log('启动登录页面')
+    /* eslint-disable*/
+    console.log(DEV)
   },
   methods: {
     showPwd () {

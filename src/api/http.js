@@ -2,7 +2,7 @@ import axios from 'axios'
 import store from '../vuex'
 import router from '../router'
 
-let DEV
+let DEV = window.DEV
 
 // axios配置
 axios.defaults.timeout = 10000

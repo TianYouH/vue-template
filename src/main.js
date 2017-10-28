@@ -8,6 +8,7 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import './assets/customerIcon/iconfont'
 
+global.DEV = true
 Vue.config.productionTip = true // 启用开发环境
 
 Vue.use(ElementUI)
