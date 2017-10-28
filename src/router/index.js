@@ -3,20 +3,42 @@ import VueRouter from 'vue-router'
 import store from '../vuex'
 
 import errorRouter from './error'
+import testRouter from './test'
 
 Vue.use(VueRouter)
+
+const homeRouter = {
+  path: '/',
+  name: 'Home',
+  redirect: 'welcome',
+  mate: {
+    title: '主页',
+    requireAuth: true
+  },
+  hidden: true,
+  component: resolve => { require(['views/Home.vue'], resolve) },
+  children: [
+    {
+      path: 'welcome', title: '欢迎', name: 'welcome-index', component: resolve => { require(['views/Welcome.vue'], resolve) }
+    }
+  ]
+}
 
 const loginRouter = {
   path: '/login',
   name: 'login',
   meta: {
-    title: 'Login-登录'
+    title: 'Login-登录',
+    requireAuth: false
   },
+  hidden: true,
   component: resolve => { require(['views/Login.vue'], resolve) }
 }
 
 const routes = [
+  homeRouter,
   loginRouter,
+  ...testRouter,
   ...errorRouter
 ]
 

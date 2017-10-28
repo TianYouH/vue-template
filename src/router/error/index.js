@@ -4,6 +4,7 @@ export default [
     meta: {
       title: '401-权限不足'
     },
+    hidden: true,
     name: 'error_401',
     component: resolve => { require(['views/error_page/401.vue'], resolve) }
   },
@@ -12,12 +13,14 @@ export default [
     meta: {
       title: '500-服务端错误'
     },
+    hidden: true,
     name: 'error_500',
     component: resolve => { require(['views/error_page/500.vue'], resolve) }
   },
   {
     path: '/*',
     name: 'error_404',
+    hidden: true,
     meta: {
       title: '404-页面不存在'
     },

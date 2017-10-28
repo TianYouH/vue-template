@@ -63,8 +63,6 @@ export default {
   },
   mounted () {
     console.log('启动登录页面')
-    /* eslint-disable*/
-    console.log(DEV)
   },
   methods: {
     showPwd () {
