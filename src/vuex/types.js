@@ -1,17 +1,3 @@
 export const ADDUSERNAME = 'ADDUSERNAME'
 
 export const REMUSERNAME = 'REMUSERNAME'
-
-export const SAVEACCOUNT = 'SAVEACCOUNT'
-
-export const REMOVACCOUNT = 'REMOVACCOUNT'
-
-export const SAVE = 'SAVE'
-
-export const NOSAVE = 'NOSAVE'
-
-export const ADDKSCLASSIFY = 'ADDKSCLASSIFY'
-
-export const ADD_VISITED_VIEWS = 'ADD_VISITED_VIEWS'
-
-export const DEL_VISITED_VIEWS = 'DEL_VISITED_VIEWS'
