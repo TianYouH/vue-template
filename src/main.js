@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import router from './router'
+import store from './vuex'
 import App from './App'
 
 import HuangSvg from './components/Huang-svg'
@@ -16,6 +17,7 @@ Vue.use(HuangSvg)
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
   components: { App }
 })
