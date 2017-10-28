@@ -32,6 +32,7 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
+  // console.log('to:', to, 'from:', from, 'next:', next)
   if (to.matched.some(r => r.meta.requireAuth)) { // 判断该路由是否需要登录权限
     if (store.getters.token) { // 通过vuex state获取当前的token是否存在
       next()
