@@ -29,7 +29,7 @@
 
 <script>
 
-import { requestLogin } from 'api/api'
+// import { requestLogin } from 'api/api'
 
 export default {
   name: 'login',

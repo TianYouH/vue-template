@@ -6,17 +6,16 @@
       </el-col>
       <el-col :span="1">
         <div class="tools" @click.prevent="collapse">
-          <i class="fa fa-align-justify"></i>
+          <i class="el-icon-menu"></i>
         </div>
       </el-col>
       <el-col :span="4">
         <Levelbar></Levelbar>
       </el-col>
-      <tabs-view></tabs-view>
       <el-col :span="4" class="userinfo">
         <el-dropdown trigger="hover">
 					<span class="el-dropdown-link userinfo-inner">{{ sysUserName }}
-						<img :src='sysUserAvatar' :class=" sysUserAvatar ?  '':'fa fa-user-circle fa-3x' ">
+						<img :src='sysUserAvatar'>
 					</span>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item @click.native="editPS.loginVisible=!editPS.loginVisible">修改密码</el-dropdown-item>
@@ -83,24 +82,21 @@
 
 </section>
 </el-col>
-<hLogin :props="editPS" :userName="sysAccountName"></hLogin>
 </el-row>
 </template>
 
 <script>
 import Levelbar from '../components/levelBar/levelBar'
-import TabsView from '../components/tabsView/tabsView'
 export default {
   components: {
-    Levelbar,
-    TabsView
+    Levelbar
   },
   data () {
     return {
       collapsed: false,
       sysAccountName: '测试页面',
-      sysUserName: '',
-      sysUserAvatar: '',
+      sysUserName: '测试名称',
+      sysUserAvatar: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1509253924343&di=5df02c24e7d5665e09f10b5365e669dc&imgtype=0&src=http%3A%2F%2Feasyread.ph.126.net%2FGHAxYajjwS1WweT-mlZBrA%3D%3D%2F7917086252361219238.jpg',
       form: {
         name: '',
         region: '',
@@ -110,17 +106,14 @@ export default {
         type: [],
         resource: '',
         desc: ''
-      },
-      editPS: {
-        loginVisible: false
       }
     }
   },
   watch: {
-    $route (to) {
+    // $route (to) {
       // console.log('前往');
       // console.log(to.path);
-    }
+    // }
   },
   computed: {
     sysName () {
@@ -131,6 +124,9 @@ export default {
     handleopen () {
     },
     handleclose () {
+    },
+    handleselect: function (...arr) {
+      console.log(arr)
     },
     // 退出登录
     logout: function () {
@@ -154,11 +150,12 @@ export default {
     }
   },
   mounted () {
-    let user = this.$store.state.mutations.user
-    if (user) {
-      this.sysUserName = user.user.fname || ''
-      this.sysAccountName = user.user.username || ''
-    }
+    // let user = this.$store.state.mutations.user
+    // console.log(user)
+    // if (user.user) {
+    //   this.sysUserName = user.user.fname || ''
+    //   this.sysAccountName = user.user.username || ''
+    // }
   }
 }
 </script>
@@ -234,6 +231,7 @@ export default {
         cursor: pointer;
       }
     }
+
     .main {
       display: flex;
       position: absolute;
@@ -250,6 +248,7 @@ export default {
           width: 60px;
           .item {
             position: relative;
+            background-color: #012b81;
           }
           .submenu {
             position: absolute;

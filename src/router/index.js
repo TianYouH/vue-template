@@ -9,7 +9,6 @@ Vue.use(VueRouter)
 
 const homeRouter = {
   path: '/',
-  name: 'Home',
   redirect: 'welcome',
   mate: {
     title: '主页',
@@ -19,7 +18,7 @@ const homeRouter = {
   component: resolve => { require(['views/Home.vue'], resolve) },
   children: [
     {
-      path: 'welcome', title: '欢迎', name: 'welcome-index', component: resolve => { require(['views/Welcome.vue'], resolve) }
+      path: 'welcome', title: '欢迎', name: '欢迎', component: resolve => { require(['views/Welcome.vue'], resolve) }
     }
   ]
 }
