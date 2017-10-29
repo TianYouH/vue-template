@@ -5,7 +5,8 @@ import App from './App'
 
 import HuangSvg from './components/Huang-svg'
 import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
+// import 'element-ui/lib/theme-chalk/index.css'
+import './styles/element-variables.scss'
 import './assets/customerIcon/iconfont'
 
 global.DEV = true

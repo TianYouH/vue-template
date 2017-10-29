@@ -1,8 +1,8 @@
 <template>
   <el-row class="container">
     <el-col :span="24" class="header">
-      <el-col :span="10" class="logo" :class="collapsed?'logo-collapse-width':'logo-width'">
-        {{collapsed ? '' : sysName}}
+      <el-col :span="10" class="logo" :class="isCollapse?'logo-collapse-width':'logo-width'">
+        {{isCollapse ? '' : sysName}}
       </el-col>
       <el-col :span="1">
         <div class="tools" @click.prevent="collapse">
@@ -14,75 +14,49 @@
       </el-col>
       <el-col :span="4" class="userinfo">
         <el-dropdown trigger="hover">
-					<span class="el-dropdown-link userinfo-inner">{{ sysUserName }}
-						<img :src='sysUserAvatar'>
-					</span>
+  				<span class="el-dropdown-link userinfo-inner">{{ sysUserName }}
+  					<img :src='sysUserAvatar'>
+  				</span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item @click.native="editPS.loginVisible=!editPS.loginVisible">修改密码</el-dropdown-item>
-            <el-dropdown-item divided @click.native="logout">退出登录</el-dropdown-item>
-          </el-dropdown-menu>
-        </el-dropdown>
-      </el-col>
+            <el-dropdown-item @click.native="updatePassword">修改密码</el-dropdown-item>
+          <el-dropdown-item divided @click.native="logout">退出登录</el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
     </el-col>
-    <el-col :span="24" class="main">
-      <aside :class="collapsed?'menu-collapsed':'menu-expanded'">
-        <!--导航菜单-->
-        <el-menu :default-active="$route.path" class="el-menu-vertical-demo" @open="handleopen" @close="handleclose"
-                 @select="handleselect" unique-opened router v-show="!collapsed">
-          <template v-for="(item,index) in $router.options.routes" v-if="!item.hidden">
+  </el-col>
+    <el-col :span="24" class="main" >
+      
+      <el-menu :class="{'menuStyle': !this.isCollapse}" @open="handleOpen" @close="handleClose" :default-active="$route.path.slice(1)" :router='true' :collapse="isCollapse">
+        <template v-for="(item,index) in $router.options.routes" v-if="!item.hidden">
+
             <el-submenu :index="index+''" v-if="!item.leaf" :key="index">
               <template slot="title">
-                <i :class="item.iconCls"></i>{{item.name}}
+                <i :class="item.iconCls"></i>
+                <span slot="title">{{item.name}}</span>
               </template>
               <el-menu-item v-for="child in item.children" :index="child.path" :key="child.path" v-if="!child.hidden">
                 {{child.name}}
               </el-menu-item>
             </el-submenu>
+
             <el-menu-item v-if="item.leaf&&item.children.length>0" :index="item.children[0].path" :key="index">
               <i :class="item.iconCls"></i>{{item.children[0].name}}
             </el-menu-item>
-          </template>
-        </el-menu>
-        <!--导航菜单-折叠后-->
-        <ul class="el-menu el-menu-vertical-demo collapsed" v-show="collapsed" ref="menuCollapsed">
-          <li v-for="(item,index) in $router.options.routes" v-if="!item.hidden" class="el-submenu item" :key="index">
-            <template v-if="!item.leaf">
-              <div class="el-submenu__title" style="padding-left: 20px;" @mouseover="showMenu(index,true)"
-                   @mouseout="showMenu(index,false)">
-                <i :class="item.iconCls"></i>
-              </div>
-              <ul class="el-menu submenu" :class="'submenu-hook-'+index" @mouseover="showMenu(index,true)"
-                  @mouseout="showMenu(index,false)">
-                <li v-for="child in item.children" v-if="!child.hidden" :key="child.path" class="el-menu-item"
-                    style="padding-left: 40px;" :class="$route.path==child.path?'is-active':''"
-                    @click="$router.push(child.path)">{{child.name}}
-                </li>
-              </ul>
-            </template>
-            <template v-else>
-          <li class="el-submenu">
-            <div class="el-submenu__title el-menu-item"
-                 style="padding-left: 20px;height: 46px;line-height: 46px;padding: 0 20px;"
-                 :class="$route.path==item.children[0].path?'is-active':''"
-                 @click="$router.push(item.children[0].path)">
-              <i :class="item.iconCls"></i>
-            </div>
-          </li>
-</template>
-</li>
-</ul>
-</aside>
-<section class="content-container">
 
-  <el-col :span="24" class="content-wrapper">
-    <transition name="fade" mode="out-in">
-      <router-view></router-view>
-    </transition>
-  </el-col>
+        </template>
+      </el-menu>
 
-</section>
-</el-col>
-</el-row>
+      <section class="content-container">
+
+        <el-col :span="24" class="content-wrapper">
+          <transition name="fade" mode="out-in">
+            <router-view></router-view>
+          </transition>
+        </el-col>
+
+      </section>
+    </el-col>
+  </el-row>
 </template>
 
 <script>
@@ -93,20 +67,10 @@ export default {
   },
   data () {
     return {
-      collapsed: false,
+      isCollapse: false,
       sysAccountName: '测试页面',
       sysUserName: '测试名称',
-      sysUserAvatar: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1509253924343&di=5df02c24e7d5665e09f10b5365e669dc&imgtype=0&src=http%3A%2F%2Feasyread.ph.126.net%2FGHAxYajjwS1WweT-mlZBrA%3D%3D%2F7917086252361219238.jpg',
-      form: {
-        name: '',
-        region: '',
-        date1: '',
-        date2: '',
-        delivery: false,
-        type: [],
-        resource: '',
-        desc: ''
-      }
+      sysUserAvatar: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1509253924343&di=5df02c24e7d5665e09f10b5365e669dc&imgtype=0&src=http%3A%2F%2Feasyread.ph.126.net%2FGHAxYajjwS1WweT-mlZBrA%3D%3D%2F7917086252361219238.jpg'
     }
   },
   watch: {
@@ -121,29 +85,27 @@ export default {
     }
   },
   methods: {
-    handleopen () {
+    handleOpen () {
+      console.log(this.$route)
     },
-    handleclose () {
+    handleClose () {
     },
-    handleselect: function (...arr) {
-      console.log(arr)
+    updatePassword () {
+      console.log(this.$router)
     },
     // 退出登录
     logout: function () {
       this.$confirm('确认退出吗?', '提示', {}).then(() => {
         this.$store.dispatch('removeUser')
-        if (!this.$store.getters.saveChecked) {
-          this.$store.dispatch('removeAcc')
-        }
-        this.$router.push({
+        this.$router.replace({
           path: '/login'
         })
       }).catch(() => {
       })
     },
     // 折叠导航栏
-    collapse: function () {
-      this.collapsed = !this.collapsed
+    collapse () {
+      this.isCollapse = !this.isCollapse
     },
     showMenu (i, status) {
       this.$refs.menuCollapsed.getElementsByClassName('submenu-hook-' + i)[0].style.display = status ? 'block' : 'none'
@@ -218,10 +180,10 @@ export default {
         }
       }
       .logo-width {
-        width: 230px;
+        width: 200px;
       }
       .logo-collapse-width {
-        width: 60px
+        width: 65px
       }
       .tools {
         padding: 0px 23px;
@@ -232,42 +194,16 @@ export default {
       }
     }
 
+    .menuStyle {
+      width: 200px
+    }
+
     .main {
       display: flex;
       position: absolute;
       top: 60px;
       bottom: 0px;
       overflow: hidden;
-      aside {
-        flex: 0 0 230px;
-        width: 230px;
-        .el-menu {
-          height: 100%;
-        }
-        .collapsed {
-          width: 60px;
-          .item {
-            position: relative;
-            background-color: #012b81;
-          }
-          .submenu {
-            position: absolute;
-            top: 0px;
-            left: 60px;
-            z-index: 99999;
-            height: auto;
-            display: none;
-          }
-        }
-      }
-      .menu-collapsed {
-        flex: 0 0 60px;
-        width: 60px;
-      }
-      .menu-expanded {
-        flex: 0 0 230px;
-        width: 230px;
-      }
       .content-container {
         flex: 1;
         overflow-y: scroll;
@@ -284,6 +220,7 @@ export default {
           box-sizing: border-box;
         }
       }
+    
     }
   }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div id='welcome'>
-    欢迎使用
+    <p>欢迎使用</p>
   </div>
 </template>
 <script>
@@ -22,6 +22,14 @@ export default {
   }
 }
 </script>
-<style scoped>
-
+<style lang='scss' scoped>
+#welcome {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  p {
+    font-size: 36px
+  }
+}
 </style>
