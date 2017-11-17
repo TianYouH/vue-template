@@ -1,3 +1,7 @@
+import NoAccess from 'views/error_page/401.vue'
+import ServerError from 'views/error_page/500.vue'
+import NoPage from 'views/error_page/404.vue'
+
 export default [
   {
     path: '/401',
@@ -6,7 +10,7 @@ export default [
     },
     hidden: true,
     name: 'error_401',
-    component: resolve => { require(['views/error_page/401.vue'], resolve) }
+    component: NoAccess
   },
   {
     path: '/500',
@@ -15,7 +19,7 @@ export default [
     },
     hidden: true,
     name: 'error_500',
-    component: resolve => { require(['views/error_page/500.vue'], resolve) }
+    component: ServerError
   },
   {
     path: '/*',
@@ -24,6 +28,6 @@ export default [
     meta: {
       title: '404-页面不存在'
     },
-    component: resolve => { require(['views/error_page/404.vue'], resolve) }
+    component: NoPage
   }
 ]

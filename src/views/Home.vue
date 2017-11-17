@@ -61,6 +61,9 @@
 
 <script>
 import Levelbar from '../components/levelBar/levelBar'
+import jQuery from 'jquery'
+import _ from 'loadsh'
+
 export default {
   components: {
     Levelbar
@@ -112,12 +115,10 @@ export default {
     }
   },
   mounted () {
-    // let user = this.$store.state.mutations.user
-    // console.log(user)
-    // if (user.user) {
-    //   this.sysUserName = user.user.fname || ''
-    //   this.sysAccountName = user.user.username || ''
-    // }
+    console.log('挂载完成')
+    console.log(jQuery('body'))
+    let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    console.log(_.chunk(arr, 3))
   }
 }
 </script>

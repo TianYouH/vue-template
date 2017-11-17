@@ -5,6 +5,10 @@ import store from '../vuex'
 import errorRouter from './error'
 import testRouter from './test'
 
+import Home from 'views/Home.vue'
+import Welcome from 'views/Welcome.vue'
+import Login from 'views/Login.vue'
+
 Vue.use(VueRouter)
 
 const homeRouter = {
@@ -15,10 +19,10 @@ const homeRouter = {
     requireAuth: true
   },
   hidden: true,
-  component: resolve => { require(['views/Home.vue'], resolve) },
+  component: Home,
   children: [
     {
-      path: 'welcome', title: '欢迎', name: '欢迎', component: resolve => { require(['views/Welcome.vue'], resolve) }
+      path: 'welcome', title: '欢迎', name: '欢迎', component: Welcome
     }
   ]
 }
@@ -31,7 +35,7 @@ const loginRouter = {
     requireAuth: false
   },
   hidden: true,
-  component: resolve => { require(['views/Login.vue'], resolve) }
+  component: Login
 }
 
 const routes = [

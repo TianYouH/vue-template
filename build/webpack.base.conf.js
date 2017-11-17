@@ -28,6 +28,16 @@ module.exports = {
       'api': resolve('src/api')
     }
   },
+  externals: {
+    jquery: 'jQuery',
+    loadsh: '_',
+    "element-ui": "ELEMENT",
+    vue: 'Vue',
+    "vue-router": 'VueRouter',
+    axios: 'axios',
+    vuex: 'Vuex'
+
+  },
   module: {
     rules: [
       {
